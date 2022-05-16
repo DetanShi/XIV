@@ -73,7 +73,7 @@
     try{
       document.getElementById('charname').innerHTML = data.Character.Name
       document.getElementById('charbirth').innerHTML = data.Character.Nameday
-      document.getElementById('portrait').setAttribute('src', `xiv-chards.herokuapp.com/prepare/id/${data.Character.ID}.png`)
+      document.getElementById('portrait').setAttribute('src', `${data.Character.Portrait}`)
     } catch(e){
       alert(e)
     } finally {
