@@ -33,6 +33,28 @@
 </head>
 <body>
 <script>
+
+  let getParameterByName = function() {
+    let queries = location.search.substring(1).split('?'),
+        processed = {};
+    for (let query of queries) {
+        let [name, value] = query.split('=');
+        processed[decodeURIComponent(name)] = value? decodeURIComponent(value) : '';
+    }
+
+    return function(name) {
+        if (typeof processed[name] !== 'undefined')
+            return processed[name];
+        else
+            return null; 
+    };
+  }();
+
+  window.onload = function() {
+    var order = getParameterByName("world");
+    var prod = getParameterByName("name");
+  }
+
   //Caller function for querying any Json formatted API
   var getJson = function(url, callback) {
     var response = new XMLHttpRequest();
@@ -61,7 +83,7 @@
             if (err !== null) {
                 alert('Something went wrong: ' + err);
             } else {
-                document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+                //document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
                 populate_data(data)
             }
           });
@@ -71,13 +93,11 @@
 
   function populate_data(data){
     try{
-      document.getElementById('charname').innerHTML = data.Character.Name
-      document.getElementById('charbirth').innerHTML = data.Character.Nameday
-      document.getElementById('portrait').setAttribute('src', `${data.Character.Portrait}`)
+      document.getElementById('characterid').value = data.Character.ID
     } catch(e){
       alert(e)
     } finally {
-      document.getElementById('info-panels').hidden = false
+      document.getElementById('send-form').click()
     }
   }
 </script>
@@ -128,6 +148,11 @@
         <br>
         <button onclick="get_character(document.getElementById('worlds').options[ document.getElementById('worlds').selectedIndex ].value, document.getElementById('character_name').value)">Search</button>
       </div>
+      <form action="./character.html" hidden>
+        <input type="text" id="characterid" name="characterid" value="null"><br>
+        <input type="submit" id="send-form" value="Submit">
+      </form> 
+      
       <p id="debug"></p>
       <div id="info-panels" hidden>
         <div class="row">
