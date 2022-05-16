@@ -41,27 +41,24 @@
     response.send();
   };
 
+  //Is a nested API Call to handle retrieval of profile information
   function get_character(world, name) {
 
     getJson(`https://xivapi.com/character/search?name=${name}&server=${world}`,function(err, data) {
-    if (err !== null) {
-        alert('Something went wrong: ' + err);
-    } else {
-        document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
-    }
+      if (err !== null) {
+          alert('Something went wrong: ' + err);
+      } else {
+          document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+          getJson(`https://xivapi.com/character/${data.Results[0].ID}?extended=1`,function(err, data) {
+            if (err !== null) {
+                alert('Something went wrong: ' + err);
+            } else {
+                document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+            }
+          });
+      }
     });
 
-  }
-
-  function get_character(id) {
-
-    getJson(`https://xivapi.com/character/${id}?extended=1`,function(err, data) {
-    if (err !== null) {
-        alert('Something went wrong: ' + err);
-    } else {
-        document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
-    }
-    });
 
   }
 </script>
@@ -77,7 +74,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
+        <li class="active"><a href="https://williamhambrick.github.io/XLV/">Dashboard</a></li>
       </ul>
     </div>
   </div>
@@ -88,7 +85,7 @@
     <div class="col-sm-3 sidenav hidden-xs">
       <h2>XLV</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Dashboard</a></li>
+        <li class="active"><a href="https://williamhambrick.github.io/XLV/">Dashboard</a></li>
       </ul><br>
     </div>
     <br>
@@ -98,7 +95,7 @@
         <h4>Character Information</h4>
         <label>World:</label>
         <select name="world" id="worlds">
-            <option value="Famfrit">Famfrit</option>
+            <option selected value="Famfrit">Famfrit</option>
             <option value="Ultros">Ultros</option>
             <option value="Exodus">Exodus</option>
             <option value="Hyperion">Hyperion</option>
@@ -106,7 +103,7 @@
         <label>Character:</label>
         <input type="text" id="character_name" value="">
         <br>
-        <button onclick="alert('Clicked'); get_character(document.getElementById('worlds').options[ document.getElementById('worlds').selectedIndex ].value, document.getElementById('character_name').value)">Search</button>
+        <button onclick="get_character(document.getElementById('worlds').options[ document.getElementById('worlds').selectedIndex ].value, document.getElementById('character_name').value)">Search</button>
       </div>
       <p id="debug"></p>
       <div id="info-panels" hidden>
