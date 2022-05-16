@@ -21,7 +21,15 @@
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
+
+    .qr-code {
+      max-width: 200px;
+      margin: 10px;
+    }
   </style>
+
+  <link rel="stylesheet" href=
+  "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
 <script>
@@ -87,9 +95,12 @@
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="https://williamhambrick.github.io/XLV/">Dashboard</a></li>
       </ul><br>
+      <p><a id="qr-link" href="https://williamhambrick.github.io/XLV/">
+        <img src= "https://chart.googleapis.com/chart?cht=qr&chl=https://williamhambrick.github.io/XLV/&chs=160x160&chld=L|0" alt="QR Link" class="qr-code img-thumbnail img-responsive" />
+      </a></p>
     </div>
     <br>
-    
+
     <div class="col-sm-9">
       <div class="well">
         <h4>Character Information</h4>
