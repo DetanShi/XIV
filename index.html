@@ -62,12 +62,23 @@
                 alert('Something went wrong: ' + err);
             } else {
                 document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+                populate_data(data)
             }
           });
-      }
-    });
+      } //end else
+    }); //end outside api
+  }
 
-
+  function populate_data(data){
+    try{
+      document.getElementById('charname').innerHTML = data.Character.Name
+      document.getElementById('charbirth').innerHTML = data.Character.Nameday
+      document.getElementById('portrait').setAttribute('src', `xiv-chards.herokuapp.com/prepare/id/${data.Character.ID}.png`)
+    } catch(e){
+      alert(e)
+    } finally {
+      document.getElementById('info-panels').hidden = false
+    }
   }
 </script>
 <nav class="navbar navbar-inverse visible-xs">
@@ -95,6 +106,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="https://williamhambrick.github.io/XLV/">Dashboard</a></li>
       </ul><br>
+      <!--Only Displayed on Desktop-->
       <p><a id="qr-link" href="https://williamhambrick.github.io/XLV/">
         <img src= "https://chart.googleapis.com/chart?cht=qr&chl=https://williamhambrick.github.io/XLV/&chs=160x160&chld=L|0" alt="QR Link" class="qr-code img-thumbnail img-responsive" />
       </a></p>
@@ -121,8 +133,8 @@
         <div class="row">
           <div class="col-sm-3">
             <div class="well">
-              <h4 id="name"></h4>
-              <p>1 Million</p> 
+              <h4 id="charname"></h4>
+              <p id="charbirth"></p> 
             </div>
           </div>
           <div class="col-sm-3">
@@ -170,7 +182,7 @@
         <div class="row">
           <div class="col-sm-8">
             <div class="well">
-              <p>Text</p> 
+              <img id="portrait">
             </div>
           </div>
           <div class="col-sm-4">
