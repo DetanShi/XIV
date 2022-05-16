@@ -24,7 +24,47 @@
   </style>
 </head>
 <body>
-<script src="./js/xiv-api.js"></script>
+<script>
+  //Caller function for querying any Json formatted API
+  var getJson = function(url, callback) {
+    var response = new XMLHttpRequest();
+    response.open('GET', url, true);
+    response.responseType = 'json';
+    response.onload = function() {
+      var status = response.status;
+      if (status === 200) {
+        callback(null, response.response);
+      } else {
+        callback(status, response.response);
+      }
+    };
+    response.send();
+  };
+
+  function get_character(world, name) {
+
+    getJson(`https://xivapi.com/character/search?name=${name}&server=${world}`,function(err, data) {
+    if (err !== null) {
+        alert('Something went wrong: ' + err);
+    } else {
+        document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+    }
+    });
+
+  }
+
+  function get_character(id) {
+
+    getJson(`https://xivapi.com/character/${id}?extended=1`,function(err, data) {
+    if (err !== null) {
+        alert('Something went wrong: ' + err);
+    } else {
+        document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+    }
+    });
+
+  }
+</script>
 <nav class="navbar navbar-inverse visible-xs">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -66,7 +106,7 @@
         <label>Character:</label>
         <input type="text" id="character_name" value="">
         <br>
-        <button onclick="get_character(document.getElementById('worlds').options[ document.getElementById('worlds').selectedIndex ].value, document.getElementById('character_name').value)">Search</button>
+        <button onclick="alert('Clicked'); get_character(document.getElementById('worlds').options[ document.getElementById('worlds').selectedIndex ].value, document.getElementById('character_name').value)">Search</button>
       </div>
       <p id="debug"></p>
       <div id="info-panels" hidden>
