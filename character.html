@@ -94,7 +94,8 @@
     window.onload = function() {
       var order = getParameterByName("characterid");
       if(order == null){
-        //window.location.href = "https://williamhambrick.github.io/XLV/";
+        alert("No character information detected. Please enter Character information on next page.")
+        window.location.href = "https://williamhambrick.github.io/XLV/";
       }
       get_character(order)
     }

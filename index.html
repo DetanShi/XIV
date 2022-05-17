@@ -78,7 +78,7 @@
       if (err !== null) {
           alert('Something went wrong: ' + err);
       } else {
-          document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
+          //document.getElementById('debug').innerHTML = JSON.stringify(data, null, 4)
           getJson(`https://xivapi.com/character/${data.Results[0].ID}?extended=1`,function(err, data) {
             if (err !== null) {
                 alert('Something went wrong: ' + err);
@@ -153,7 +153,6 @@
         <input type="submit" id="send-form" value="Submit">
       </form> 
       
-      <p id="debug"></p>
       <div id="info-panels" hidden>
         <div class="row">
           <div class="col-sm-3">
