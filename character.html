@@ -35,7 +35,7 @@
   ======================================================== -->
 </head>
 
-<body id="main-body">
+<body id="main-body" hidden>
   <!-- Script for populating page here -->
   <script>
 
@@ -149,7 +149,7 @@
         document.getElementById("deity").innerHTML = data.Character.GuardianDeity.Name;
         document.getElementById("title").innerText = data.Character.Title.Name;
         document.getElementById("bio").innerText = data.Character.Bio;
-        document.getElementById("all-content").hidden = false;
+        document.getElementById("main-body").hidden = false;
       } catch(e){
         alert(e)
       } finally {
@@ -157,7 +157,6 @@
       }
     }
   </script>
-  <section id="all-content" hidden>
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
   <!-- ======= Header ======= -->
@@ -424,7 +423,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-</section>
 </body>
 
 </html>
