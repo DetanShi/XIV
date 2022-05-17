@@ -123,9 +123,9 @@
         document.getElementById("page-title").innerHTML = 'XIV - ' + data.Character.Name
         document.getElementById('name-small').innerHTML = data.Character.Name
         document.getElementById('name-center').innerHTML = data.Character.Name
-        document.getElementById('profile-hd').setAttribute('sr', `url(${data.Character.Portrait}})`)
-        document.getElementById('profile-img').setAttribute('src', `url(${data.Character.Avatar}})`)
-        document.getElementById("hero").style.backgroundImage = `url(${data.Character.Portrait}})`;
+        document.getElementById('profile-hd').setAttribute('src', data.Character.Avatar)
+        document.getElementById('profile-img').setAttribute('src', data.Character.Avatar)
+        document.getElementById("hero").style.backgroundImage = `url(${data.Character.Portrait})`;
         iamstring = get_jobs_string(data)
         document.getElementById('iamtypes').setAttribute('data-typed-items', iamstring);
 
