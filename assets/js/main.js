@@ -127,7 +127,7 @@
 
   /**
    * Hero type effect
-   */
+
   const typed = select('.typed')
   if (typed) {
     let typed_strings = typed.getAttribute('data-typed-items')
@@ -139,7 +139,7 @@
       backSpeed: 50,
       backDelay: 2000
     });
-  }
+  }   */
 
   /**
    * Skills animation
