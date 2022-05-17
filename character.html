@@ -36,33 +36,6 @@
 </head>
 
 <body id="main-body">
-
-  <style>
-    .loader {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid #3498db;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite; /* Safari */
-      animation: spin 2s linear infinite;
-      max-width: 500px;
-      margin: auto;
-      padding: 200px;
-    }
-    
-    /* Safari */
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    </style>
-
   <!-- Script for populating page here -->
   <script>
 
@@ -176,7 +149,6 @@
         document.getElementById("deity").innerHTML = data.Character.GuardianDeity.Name;
         document.getElementById("title").innerText = data.Character.Title.Name;
         document.getElementById("bio").innerText = data.Character.Bio;
-        document.getElementById("loader").hidden = true;
         document.getElementById("all-content").hidden = false;
       } catch(e){
         alert(e)
@@ -185,7 +157,6 @@
       }
     }
   </script>
-  <div id="loader" class="loader"></div>
   <section id="all-content" hidden>
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
